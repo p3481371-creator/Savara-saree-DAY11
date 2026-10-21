@@ -18,13 +18,21 @@
   <symbol id="arrow" viewBox="0 0 26 10"><path d="M0 5h24M20 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
 </defs></svg>
 <div class="loader" id="loader" role="status" aria-label="Loading SVARA">
+  <div class="door l" aria-hidden="true"><i class="ring"></i></div>
+  <div class="door r" aria-hidden="true"><i class="ring"></i></div>
+  <div class="seam" aria-hidden="true"></div>
   <div class="smoke" aria-hidden="true"></div>
+  <canvas class="lembers" id="lEmbers" aria-hidden="true"></canvas>
   <div class="in">
-    <img class="logo" src="img/logo.png" alt="SVARA South Indian Heritage">
-    <div class="flame" aria-hidden="true"></div>
-    <div class="lbar" aria-hidden="true"><i id="lbar"></i></div>
-    <div class="lnote" id="lnote">Lighting the lamps · 0%</div>
-    <div class="choices" id="choices"><button class="enter" id="enterBtn">Enter</button><button class="enter snd" id="enterSnd"><span>Enter with temple sound</span></button></div>
+    <span class="eyebrow lfade">South Indian Heritage · Kanchipuram</span>
+    <div class="kolamwrap" id="kolamWrap">
+      <svg id="kolamSvg" aria-hidden="true"></svg>
+      <div class="lamp" aria-hidden="true"><div class="flame" id="lFlame"></div><div class="halo" id="lHalo"></div></div>
+      <img class="bloom" src="img/lotus-sm.png" alt="">
+    </div>
+    <div class="lword" aria-label="SVARA"><span>S</span><span>V</span><span>A</span><span>R</span><span>A</span></div>
+    <div class="lmeta lfade"><b id="lPct">0</b><span class="pc">%</span><span class="sep"></span><span id="lnote">Dyeing the silk</span></div>
+    <div class="choices" id="choices"><button class="enter" id="enterBtn">Enter</button><button class="enter snd" id="enterSnd">Enter with temple sound</button></div>
   </div>
 </div>
 <div class="grain" id="grain" aria-hidden="true"></div>

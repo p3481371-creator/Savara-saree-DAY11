@@ -2,19 +2,94 @@
   "use strict";
   var S=window.SVARA,$=S.$,$$=S.$$,clamp=S.clamp,reduce=S.reduce,D=window.SVARA_DATA;
 
-  /* ---------- loader: wait for the opening film ---------- */
-  var loader=$("#loader"),lbar=$("#lbar"),lnote=$("#lnote"),enterBtn=$("#enterBtn"),entered=false;
+  /* ---------- loader: the threshold. A sikku kolam is drawn as the opening film loads,
+     the lamp grows, the lotus blooms, and the temple doors open onto the site ---------- */
+  var loader=$("#loader"),entered=false,opening=false;
   S.filmsEnabled=false;
   document.body.classList.add("locked");
-  function enter(){if(entered)return;entered=true;loader.classList.add("gone");document.body.classList.add("entered");document.body.classList.remove("locked");S.filmsEnabled=true;loadRest()}
-  enterBtn.addEventListener("click",enter);
+  var svgNS="http://www.w3.org/2000/svg",ksvg=$("#kolamSvg");
+  // Lusona/sikku construction: a line bouncing at 45° inside a W×H box of dots never touches a dot,
+  // and with W and H coprime it visits every gap in one closed loop.
+  var KW=7,KH=6;
+  // walk the line in half-steps; every half-step passes beside exactly one dot
+  var seq=[],x=.5,y=0,dx=1,dy=1,guard=0;
+  do{seq.push([x,y]);x+=dx*.5;y+=dy*.5;
+    var bounce=false;if(x<=0||x>=KW){dx=-dx;bounce=true}if(y<=0||y>=KH){dy=-dy;bounce=true}
+    if(bounce)seq.push(null);           // marker: the point just pushed next is a wall bounce
+  }while(!(Math.abs(x-.5)<1e-9&&Math.abs(y)<1e-9&&dx===1&&dy===1)&&++guard<2000);
+  // rebuild as points with bounce flags
+  var P=[];for(var i=0;i<seq.length;i++){if(seq[i]===null){P[P.length-1]&&(P[P.length-1].b=false);continue}P.push({x:seq[i][0],y:seq[i][1],b:false})}
+  P.forEach(function(p){p.b=(p.x<=1e-9||p.x>=KW-1e-9||p.y<=1e-9||p.y>=KH-1e-9)});
+  var n=P.length,f=function(v){return v.toFixed(3)},d="";
+  function near(mx,my){var ix=Math.floor(mx)+.5,iy=Math.floor(my)+.5;return [Math.min(KW-.5,Math.max(.5,ix)),Math.min(KH-.5,Math.max(.5,iy))]}
+  var start=0;while(P[start].b)start++;
+  d="M"+f(P[start].x)+" "+f(P[start].y);
+  for(var k=1;k<=n;k++){
+    var A=P[(start+k-1)%n],B=P[(start+k)%n];
+    if(B.b){ // loop around the border dot: from A, out past the wall, back to the point after B
+      var C=P[(start+k+1)%n],nx=B.x<=1e-9?-1:B.x>=KW-1e-9?1:0,ny=B.y<=1e-9?-1:B.y>=KH-1e-9?1:0;
+      var c1x=A.x+(B.x-A.x)*2.35+nx*.1,c1y=A.y+(B.y-A.y)*2.35+ny*.1,c2x=C.x+(B.x-C.x)*2.35+nx*.1,c2y=C.y+(B.y-C.y)*2.35+ny*.1;
+      d+="C"+f(c1x)+" "+f(c1y)+" "+f(c2x)+" "+f(c2y)+" "+f(C.x)+" "+f(C.y);k++;continue;
+    }
+    // weave: bow each half-step away from the dot it passes
+    var mx=(A.x+B.x)/2,my=(A.y+B.y)/2,dt=near(mx,my),vx=mx-dt[0],vy=my-dt[1],L=Math.hypot(vx,vy)||1;
+    d+="Q"+f(mx+vx/L*.2)+" "+f(my+vy/L*.2)+" "+f(B.x)+" "+f(B.y);
+  }
+  d+="Z";
+  var cx=KW/2,cy=KH/2,ext=Math.hypot(KW,KH)/2+1;
+  ksvg.setAttribute("viewBox",(-ext)+" "+(-ext)+" "+(2*ext)+" "+(2*ext));
+  ksvg.innerHTML='<defs><linearGradient id="kgold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8893f"/><stop offset=".45" stop-color="#f6e2ad"/><stop offset=".55" stop-color="#fff3d1"/><stop offset="1" stop-color="#b8893f"/></linearGradient></defs>';
+  var g=document.createElementNS(svgNS,"g");g.setAttribute("transform","rotate(45) translate("+(-cx)+" "+(-cy)+")");ksvg.appendChild(g);
+  var ghost=document.createElementNS(svgNS,"path");ghost.setAttribute("d",d);ghost.setAttribute("class","kghost");g.appendChild(ghost);
+  var dots=[];for(var a2=0;a2<KW;a2++)for(var b2=0;b2<KH;b2++){var c=document.createElementNS(svgNS,"circle");c.setAttribute("cx",a2+.5);c.setAttribute("cy",b2+.5);c.setAttribute("r",.075);c.setAttribute("class","kdot");g.appendChild(c);dots.push({el:c,d:Math.hypot(a2+.5-cx,b2+.5-cy)})}
+  dots.sort(function(p,q){return p.d-q.d});
+  var kline=document.createElementNS(svgNS,"path");kline.setAttribute("d",d);kline.setAttribute("class","kline");kline.setAttribute("pathLength","1");g.appendChild(kline);
+  var spark=document.createElementNS(svgNS,"circle");spark.setAttribute("r",.12);spark.setAttribute("class","spark");g.appendChild(spark);
+  var LEN=kline.getTotalLength();
+  dots.forEach(function(o,i){setTimeout(function(){o.el.classList.add("on")},250+i*22)});
+
+  // embers rising past the doors
+  if(S.embers)S.embers($("#lEmbers"));
+
+  var notes=[[0,"Dyeing the silk"],[.26,"Setting the warp"],[.52,"Weaving the korvai"],[.78,"Lighting the lamps"]];
+  var real=0,shown=0,t0=performance.now(),MIN=3400,done=false,pctEl=$("#lPct"),noteEl=$("#lnote"),lastNote="",flame=$("#lFlame"),halo=$("#lHalo");
+  function setNote(s){if(s===lastNote)return;lastNote=s;noteEl.style.opacity=0;setTimeout(function(){noteEl.textContent=s;noteEl.style.opacity=1},300)}
+  (function frame(now){
+    if(opening)return;
+    var cap=Math.min(1,(now-t0-500)/MIN);shown+=(Math.min(real,Math.max(0,cap))-shown)*.08;
+    if(real>=1&&cap>=1&&shown>.995)shown=1;
+    kline.style.strokeDashoffset=(1-shown).toFixed(4);
+    if(shown>0&&shown<1){var pt=kline.getPointAtLength(shown*LEN);spark.setAttribute("cx",pt.x);spark.setAttribute("cy",pt.y);spark.style.opacity=1}else spark.style.opacity=0;
+    pctEl.textContent=Math.round(shown*100);
+    flame.style.setProperty("--fl",(.35+shown*.75).toFixed(3));halo.style.setProperty("--hl",(.25+shown*.75).toFixed(3));
+    var nt=notes[0][1];notes.forEach(function(x){if(shown>=x[0])nt=x[1]});setNote(shown>=1?"The lamps are lit":nt);
+    if(shown>=1&&!done){done=true;complete()}
+    requestAnimationFrame(frame);
+  })(t0);
+  function complete(){
+    loader.classList.add("done");kline.style.strokeDasharray="none";
+    dots.forEach(function(o,i){setTimeout(function(){o.el.classList.add("wave")},i*28)});
+    setTimeout(function(){$("#choices").classList.add("show")},700);
+    autoT=setTimeout(enter,8000);
+  }
+  var autoT=null;
+  function enter(){
+    if(entered)return;entered=true;clearTimeout(autoT);
+    loader.classList.add("done");
+    if(S.reduce){loader.classList.add("gone");finish();return}
+    opening=true;loader.classList.add("opening");S.chime(.11);
+    setTimeout(finish,500);
+    setTimeout(function(){loader.classList.add("gone")},2200);
+  }
+  function finish(){document.body.classList.add("entered");document.body.classList.remove("locked");S.filmsEnabled=true;loadRest()}
+  $("#enterBtn").addEventListener("click",enter);
   $("#enterSnd").addEventListener("click",function(){S.setSound(true);enter()});
-  setTimeout(function(){$("#choices").classList.add("show")},1800);
-  setTimeout(enter,12000);
+  setTimeout(function(){if(!done)$("#choices").classList.add("show")},9000);
+  setTimeout(function(){if(!entered)enter()},20000);
   var hero=S.films[0];hero.started=true;
   var q=hero.clips.map(function(){return 0}),wt=hero.clips.map(function(c){return MANIFEST[c].n/hero.n});
-  hero.clips.forEach(function(c,k){S.reel(c,function(v){q[k]=v;var t=q.reduce(function(a,x,i){return a+x*wt[i]},0);lbar.style.width=(t*100)+"%";lnote.textContent="Lighting the lamps · "+Math.round(t*100)+"%"})});
-  Promise.all(hero.clips.map(function(c){return S.reel(c).promise})).then(function(){lnote.textContent="The lamps are lit";$("#choices").classList.add("show");setTimeout(enter,2600)});
+  hero.clips.forEach(function(c,k){S.reel(c,function(v){q[k]=v;real=q.reduce(function(a,x,i){return a+x*wt[i]},0)})});
+  Promise.all(hero.clips.map(function(c){return S.reel(c).promise})).then(function(){real=1});
   function loadRest(){S.films.slice(1).reduce(function(ch,f){return ch.then(function(){S.startFilm(f);return Promise.all(f.clips.map(function(c){return S.reel(c).promise}))})},Promise.resolve())}
 
   /* ---------- collections → Sarees page ---------- */
