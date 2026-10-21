@@ -276,7 +276,8 @@
     if(reduce){location.href=href;return}
     try{sessionStorage.setItem("svara-pt","1")}catch(e){}
     closeDrawer();
-    animate(0.08,0.5,700,function(){location.href=href});
+    document.documentElement.classList.add("pt-in");   // fade to lamplit dark, then leave
+    setTimeout(function(){location.href=href},520);
   }
   S.go=go;
   document.addEventListener("click",function(e){
@@ -294,11 +295,9 @@
   // arriving from another page: start covered, sweep out
   var arrived=document.documentElement.classList.contains("pt-in");
   try{sessionStorage.removeItem("svara-pt")}catch(e){}
-  if(arrived&&!reduce&&sx){
-    drawSweep(0.5);
-    requestAnimationFrame(function(){document.documentElement.classList.remove("pt-in");animate(0.5,0.96,900,function(){pageAnim=null;drawSweep(-1)})});
-  }else document.documentElement.classList.remove("pt-in");
-  addEventListener("pageshow",function(e){if(e.persisted){pageAnim=null;drawSweep(-1);document.documentElement.classList.remove("pt-in")}});
+  // arriving from another page: start dark, fade the page in
+  requestAnimationFrame(function(){requestAnimationFrame(function(){document.documentElement.classList.remove("pt-in")})});
+  addEventListener("pageshow",function(e){if(e.persisted)document.documentElement.classList.remove("pt-in")});
 
   /* ---------- main loop ---------- */
   var nav=$("#nav"),fill=$("#threadFill"),hooks=[],lastY=scrollY,vel=0;
