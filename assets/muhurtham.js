@@ -28,5 +28,8 @@
     var p=mdate.value.split("-"),d=mdate.value?fmt(new Date(+p[0],+p[1]-1,+p[2])):"your date";
     note.textContent="Thank you, "+n+". Your consultation request for "+d+" ("+$("#clook").value.toLowerCase()+") is noted.";e.target.reset();
   });
+  // the thaali moment: a shower of jasmine and rose, and a bell
+  var key=$(".rituals li.key"),day=$("#day");
+  if(key&&day&&"IntersectionObserver" in window){var fired=false;new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!fired){fired=true;if(day._petals)day._petals.burst(70);S.chime(.12)}})},{threshold:.9}).observe(key)}
   S.reveal();
 })();

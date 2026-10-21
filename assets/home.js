@@ -8,12 +8,13 @@
   document.body.classList.add("locked");
   function enter(){if(entered)return;entered=true;loader.classList.add("gone");document.body.classList.add("entered");document.body.classList.remove("locked");S.filmsEnabled=true;loadRest()}
   enterBtn.addEventListener("click",enter);
-  setTimeout(function(){enterBtn.classList.add("show")},1800);
+  $("#enterSnd").addEventListener("click",function(){S.setSound(true);enter()});
+  setTimeout(function(){$("#choices").classList.add("show")},1800);
   setTimeout(enter,12000);
   var hero=S.films[0];hero.started=true;
   var q=hero.clips.map(function(){return 0}),wt=hero.clips.map(function(c){return MANIFEST[c].n/hero.n});
   hero.clips.forEach(function(c,k){S.reel(c,function(v){q[k]=v;var t=q.reduce(function(a,x,i){return a+x*wt[i]},0);lbar.style.width=(t*100)+"%";lnote.textContent="Lighting the lamps · "+Math.round(t*100)+"%"})});
-  Promise.all(hero.clips.map(function(c){return S.reel(c).promise})).then(function(){lnote.textContent="The lamps are lit";setTimeout(enter,500)});
+  Promise.all(hero.clips.map(function(c){return S.reel(c).promise})).then(function(){lnote.textContent="The lamps are lit";$("#choices").classList.add("show");setTimeout(enter,2600)});
   function loadRest(){S.films.slice(1).reduce(function(ch,f){return ch.then(function(){S.startFilm(f);return Promise.all(f.clips.map(function(c){return S.reel(c).promise}))})},Promise.resolve())}
 
   /* ---------- collections → Sarees page ---------- */
@@ -28,10 +29,10 @@
 
   /* ---------- anatomy ---------- */
   var terms=[
-    {t:"Zari",s:"the gold border",x:31,y:56,d:"Silk thread twisted with fine silver wire and dipped in gold. Pure zari stays soft and dulls gracefully with age instead of tarnishing black."},
-    {t:"Korvai",s:"the temple-spire edge",x:47,y:47,d:"Where the gold border meets the green body. The two are woven in separate colours and interlocked by hand at every pass, so the border can never separate."},
-    {t:"Butta",s:"the scattered motif",x:64.5,y:46,d:"Small woven medallions repeated across the body. Coins, mangoes and temple flowers are the classic South Indian buttas."},
-    {t:"Body",s:"the mulberry silk",x:84,y:58,d:"Three-ply mulberry silk gives a Kanchipuram its weight and deep, even lustre. The heavier the ply, the longer the saree holds its drape."}
+    {t:"Zari",s:"the gold border",x:33.0,y:62.7,d:"Silk thread twisted with fine silver wire and dipped in gold. Pure zari stays soft and dulls gracefully with age instead of tarnishing black."},
+    {t:"Korvai",s:"the temple-spire edge",x:50.0,y:52.7,d:"Where the gold border meets the green body. The two are woven in separate colours and interlocked by hand at every pass, so the border can never separate."},
+    {t:"Butta",s:"the scattered motif",x:68.6,y:51.5,d:"Small woven medallions repeated across the body. Coins, mangoes and temple flowers are the classic South Indian buttas."},
+    {t:"Body",s:"the mulberry silk",x:89.4,y:65.0,d:"Three-ply mulberry silk gives a Kanchipuram its weight and deep, even lustre. The heavier the ply, the longer the saree holds its drape."}
   ];
   var termsEl=$("#terms"),inner=$("#anaInner"),pickI=-1;
   termsEl.innerHTML=terms.map(function(t,i){return '<button class="term reveal" data-i="'+i+'" aria-expanded="false"><span class="n">'+(i+1)+'</span><span class="t">'+t.t+'<small>'+t.s+'</small></span><span class="d">'+t.d+'</span></button>'}).join("");
@@ -70,13 +71,14 @@
     set(line,"opacity",String(1-clamp(o*2.4,0,1)));
     var fo=String(1-clamp(o*2.2,0,1));
     set(fl,"opacity",fo);set(fr,"opacity",fo);set(sl,"opacity",fo);set(sr,"opacity",fo);
-    set(fl,"transform",mob?"translateY("+(-o*80).toFixed(1)+"px)":"translate("+(-o*30).toFixed(2)+"vw,-50%)");
-    set(fr,"transform",mob?"translateY("+(o*80).toFixed(1)+"px)":"translate("+(o*30).toFixed(2)+"vw,-50%)");
+    var sx=Math.round(o*vw*.3),sy=Math.round(o*80);
+    set(fl,"transform",o===0?"none":mob?"translateY("+(-sy)+"px)":"translateX("+(-sx)+"px)");
+    set(fr,"transform",o===0?"none":mob?"translateY("+sy+"px)":"translateX("+sx+"px)");
     fl.style.pointerEvents=fr.style.pointerEvents=o>.4?"none":"";
     var b=clamp((p-.19)/.06,0,1)*(1-clamp((p-.42)/.07,0,1)),bh=(b*(mob?6:9)).toFixed(2)+"vh";
     set(bt,"height",bh);set(bb,"height",bh);
     hs.classList.toggle("show",p>.66&&p<.97);
-    var q=(p-.5)/.09;words.forEach(function(w,i){var t=ease(clamp(q*1.5-i*.16,0,1));w.style.transform="translateY("+((1-t)*112).toFixed(1)+"%)"});
+    var q=(p-.5)/.09;words.forEach(function(w,i){var t=ease(clamp(q*1.5-i*.16,0,1));w.style.transform=t>=1?"none":"translateY("+((1-t)*112).toFixed(1)+"%)"});
     set(rule,"transform","scaleX("+clamp((p-.55)/.07,0,1).toFixed(3)+")");
   });
 

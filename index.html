@@ -24,7 +24,7 @@
     <div class="flame" aria-hidden="true"></div>
     <div class="lbar" aria-hidden="true"><i id="lbar"></i></div>
     <div class="lnote" id="lnote">Lighting the lamps · 0%</div>
-    <button class="enter" id="enterBtn">Enter</button>
+    <div class="choices" id="choices"><button class="enter" id="enterBtn">Enter</button><button class="enter snd" id="enterSnd"><span>Enter with temple sound</span></button></div>
   </div>
 </div>
 <div class="grain" id="grain" aria-hidden="true"></div>
@@ -38,6 +38,7 @@
     <a href="index.html" class="brand" aria-label="SVARA home"><img src="img/lotus-sm.png" alt=""><b>SVARA</b></a>
     <nav aria-label="Primary"><ul><li><a href="index.html" class="on" aria-current="page">Home</a></li><li><a href="sarees.html">Sarees</a></li><li><a href="muhurtham.html">Muhurtham</a></li><li><a href="story.html">Our Story</a></li><li><a href="journal.html">Journal</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
     <div class="tools">
+      <button class="sound" id="soundBtn" aria-pressed="false" aria-label="Temple sound"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lbl">Sound</span></button>
       <button aria-label="Search sarees" id="searchBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button>
       <button aria-label="Open bag" id="bagBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span class="bagcount" id="bagCount">0</span></button>
       <button aria-label="Open menu" class="menu-btn" id="menuBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
@@ -222,8 +223,9 @@
   </section>
 
   <!-- MUHURTHAM CONTENT -->
-  <section class="muhurtham" aria-labelledby="mTitle">
+  <section class="muhurtham" aria-labelledby="mTitle" data-petals=".14">
     <div class="glow" aria-hidden="true"></div>
+    <div class="mandala" data-mandala aria-hidden="true" style="width:min(720px,110vw);right:-180px;top:40px"></div>
     <div class="wrap sec" id="looks">
       <div class="m-intro">
         <div style="display:grid;gap:18px"><span class="eyebrow reveal">Bridal Trousseau</span><h2 id="mTitle" class="reveal">Three sarees,<br>three <em>ceremonies</em></h2></div>

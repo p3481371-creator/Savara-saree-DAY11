@@ -28,6 +28,7 @@
     <a href="index.html" class="brand" aria-label="SVARA home"><img src="img/lotus-sm.png" alt=""><b>SVARA</b></a>
     <nav aria-label="Primary"><ul><li><a href="index.html">Home</a></li><li><a href="sarees.html">Sarees</a></li><li><a href="muhurtham.html" class="on" aria-current="page">Muhurtham</a></li><li><a href="story.html">Our Story</a></li><li><a href="journal.html">Journal</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
     <div class="tools">
+      <button class="sound" id="soundBtn" aria-pressed="false" aria-label="Temple sound"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lbl">Sound</span></button>
       <button aria-label="Search sarees" id="searchBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button>
       <button aria-label="Open bag" id="bagBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span class="bagcount" id="bagCount">0</span></button>
       <button aria-label="Open menu" class="menu-btn" id="menuBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
@@ -55,8 +56,9 @@
     </div>
   </section>
 
-  <section class="muhurtham" data-tr="smoke" aria-labelledby="mTitle">
+  <section class="muhurtham" data-tr="smoke" aria-labelledby="mTitle" data-petals=".16">
     <div class="glow" aria-hidden="true"></div>
+    <div class="mandala" data-mandala aria-hidden="true" style="width:min(720px,110vw);right:-200px;top:30px"></div>
     <div class="wrap sec" id="looks">
       <div class="m-intro">
         <div style="display:grid;gap:18px"><span class="eyebrow reveal">Bridal Trousseau</span><h2 id="mTitle" class="reveal">Three sarees,<br>three <em>ceremonies</em></h2></div>
@@ -85,7 +87,8 @@
     </div>
   </section>
 
-  <section class="anatomy" data-tr="sweep" aria-labelledby="dayTitle">
+  <section class="anatomy" data-tr="sweep" aria-labelledby="dayTitle" id="day" data-petals="0" style="position:relative;overflow:hidden">
+    <div class="mandala" data-mandala aria-hidden="true" style="width:min(640px,100vw);left:-260px;top:120px;opacity:.35"></div>
     <div class="wrap sec">
       <div class="head"><div class="t"><span class="eyebrow reveal">The wedding day</span><h2 id="dayTitle" class="reveal">From dawn to the <em>thaali</em></h2></div><p class="reveal" style="color:var(--ivory-dim);max-width:42ch">A traditional Tamil wedding in the order it happens, and which saree the bride wears for each part. Customs vary between families; we weave for all of them.</p></div>
       <ol class="rituals">
