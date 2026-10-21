@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Journal · SVARA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Stories from the loom: craft, care, weddings and the heritage of South Indian silk.">
+<script>try{if(sessionStorage.getItem("svara-pt"))document.documentElement.classList.add("pt-in")}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<script>document.body.dataset.page="journal"</script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="arrow" viewBox="0 0 26 10"><path d="M0 5h24M20 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
+</defs></svg>
+<div class="grain" id="grain" aria-hidden="true"></div>
+<div class="thread" aria-hidden="true"><i id="threadFill"></i></div>
+<canvas class="fx" id="sweep" aria-hidden="true"></canvas>
+<div class="fx" id="smokefx" aria-hidden="true"><i class="veil"></i><i class="s1"></i><i class="s2"></i></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel">View</span></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="SVARA home"><img src="img/lotus-sm.png" alt=""><b>SVARA</b></a>
+    <nav aria-label="Primary"><ul><li><a href="index.html">Home</a></li><li><a href="sarees.html">Sarees</a></li><li><a href="muhurtham.html">Muhurtham</a></li><li><a href="story.html">Our Story</a></li><li><a href="journal.html" class="on" aria-current="page">Journal</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+    <div class="tools">
+      <button aria-label="Search sarees" id="searchBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button>
+      <button aria-label="Open bag" id="bagBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span class="bagcount" id="bagCount">0</span></button>
+      <button aria-label="Open menu" class="menu-btn" id="menuBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true"><button class="close" id="closeDrawer">Close</button><a href="index.html">Home</a><a href="sarees.html">Sarees</a><a href="muhurtham.html">Muhurtham</a><a href="story.html">Our Story</a><a href="journal.html">Journal</a><a href="contact.html">Contact</a></div>
+
+<main id="top">
+  <section class="phero" aria-labelledby="jh">
+    <div class="bg"><img src="img/zari-threads-2.webp" alt="" style="object-position:50% 60%"></div>
+    <div class="smoke" aria-hidden="true"></div>
+    <div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">SVARA</a><i></i><span>Journal</span></nav>
+      <h1 id="jh"><span class="ln"><span>Stories</span></span><span class="ln"><span>from the <em>Loom</em></span></span></h1>
+      <p>Notes on craft, care, weddings and the heritage of South Indian silk, written by the family and weavers at SVARA.</p>
+    </div>
+  </section>
+
+  <section class="journal" data-tr="smoke" aria-label="Articles">
+    <div class="wrap" style="padding-block:40px 130px">
+      <div class="filters reveal" id="cats" role="tablist" aria-label="Category" style="margin-bottom:44px"></div>
+      <button class="featured reveal" id="featured" data-cursor="Read"></button>
+      <div class="posts" id="posts" style="row-gap:56px"></div>
+    </div>
+  </section>
+</main>
+
+<div class="reader" id="reader" role="dialog" aria-modal="true" aria-labelledby="rTitle">
+  <button class="x" id="rClose">Close</button>
+  <div class="rhero"><img id="rImg" src="" alt=""></div>
+  <article>
+    <span class="meta" id="rMeta"></span>
+    <h1 id="rTitle"></h1>
+    <div id="rBody" style="display:grid;gap:22px"></div>
+    <button class="next" id="rNext"><span>Next story</span><b id="rNextT"></b></button>
+  </article>
+</div>
+
+<section class="letter" aria-labelledby="lTitle">
+  <div class="wrap">
+    <div><h2 id="lTitle">Letters from Kanchipuram</h2><p>New weaves, festival edits and loom visits, once a month.</p></div>
+    <div>
+      <form id="letterForm" novalidate>
+        <label for="email" style="position:absolute;left:-9999px">Email address</label>
+        <input id="email" type="email" placeholder="Your email address" autocomplete="email">
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="note" id="letterNote" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <a href="index.html" aria-label="SVARA home"><img class="flogo" src="img/logo.png" alt="SVARA South Indian Heritage" loading="lazy"></a>
+      <ul><li><a href="index.html">Home</a></li><li><a href="sarees.html">Sarees</a></li><li><a href="muhurtham.html">Muhurtham</a></li><li><a href="story.html">Our Story</a></li><li><a href="journal.html">Journal</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <div class="social">
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        <a href="https://pinterest.com" target="_blank" rel="noopener" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M11 8.5c3-1 5.5.6 5 3.3-.4 2.2-2.6 3.2-4 2.2M11.6 10l-2.4 10"/></svg></a>
+        <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+    <div class="wordmark" aria-hidden="true"><span id="wordmark">SVARA</span></div>
+    <div class="bottom"><span>© 2026 SVARA · South Indian Heritage · 14 Gandhi Road, Kanchipuram</span><span>Concept website · sample products and prices · not a real store</span></div>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="qTitle">
+  <div class="sheet">
+    <div class="gal"><img id="qImg" src="" alt=""><div class="thumbs" id="qThumbs"></div></div>
+    <div class="body">
+      <button class="x" id="qClose" aria-label="Close">×</button>
+      <span class="eyebrow" id="qTag"></span>
+      <h3 id="qTitle"></h3>
+      <div class="price" id="qPrice"></div>
+      <p id="qDesc"></p>
+      <dl id="qSpec"></dl>
+      <button class="btn" id="qAdd">Add to Bag</button>
+    </div>
+  </div>
+</div>
+<div class="scrim" id="scrim"></div>
+<aside class="bag" id="bag" aria-label="Your bag" aria-hidden="true">
+  <div class="bh"><h3>Your Bag</h3><button class="eyebrow" id="bagClose">Close</button></div>
+  <div class="bprog" id="bagProg"><span id="bagProgTxt"></span><i><b id="bagProgBar"></b></i></div>
+  <div class="items" id="bagItems"></div>
+  <div class="bf"><div class="tot"><span class="eyebrow">Subtotal</span><b id="bagTotal">₹0</b></div><small>Free shipping across India. Each saree ships with its Silk Mark tag.</small><button class="btn" id="checkout">Checkout</button></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+<script src="assets/data.js"></script>
+<script src="assets/manifest.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/journal.js"></script>
+</body>
+</html>

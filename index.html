@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SVARA Silks</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="SVARA South Indian Heritage: Kanchipuram, tissue, Chanderi and silk cotton sarees woven in Kanchipuram.">
+<script>try{if(sessionStorage.getItem("svara-pt"))document.documentElement.classList.add("pt-in")}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<script>document.body.dataset.page="home"</script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="arrow" viewBox="0 0 26 10"><path d="M0 5h24M20 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
+</defs></svg>
+<div class="loader" id="loader" role="status" aria-label="Loading SVARA">
+  <div class="smoke" aria-hidden="true"></div>
+  <div class="in">
+    <img class="logo" src="img/logo.png" alt="SVARA South Indian Heritage">
+    <div class="flame" aria-hidden="true"></div>
+    <div class="lbar" aria-hidden="true"><i id="lbar"></i></div>
+    <div class="lnote" id="lnote">Lighting the lamps · 0%</div>
+    <button class="enter" id="enterBtn">Enter</button>
+  </div>
+</div>
+<div class="grain" id="grain" aria-hidden="true"></div>
+<div class="thread" aria-hidden="true"><i id="threadFill"></i></div>
+<canvas class="fx" id="sweep" aria-hidden="true"></canvas>
+<div class="fx" id="smokefx" aria-hidden="true"><i class="veil"></i><i class="s1"></i><i class="s2"></i></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel">View</span></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="SVARA home"><img src="img/lotus-sm.png" alt=""><b>SVARA</b></a>
+    <nav aria-label="Primary"><ul><li><a href="index.html" class="on" aria-current="page">Home</a></li><li><a href="sarees.html">Sarees</a></li><li><a href="muhurtham.html">Muhurtham</a></li><li><a href="story.html">Our Story</a></li><li><a href="journal.html">Journal</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+    <div class="tools">
+      <button aria-label="Search sarees" id="searchBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button>
+      <button aria-label="Open bag" id="bagBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span class="bagcount" id="bagCount">0</span></button>
+      <button aria-label="Open menu" class="menu-btn" id="menuBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true"><button class="close" id="closeDrawer">Close</button><a href="index.html">Home</a><a href="sarees.html">Sarees</a><a href="muhurtham.html">Muhurtham</a><a href="story.html">Our Story</a><a href="journal.html">Journal</a><a href="contact.html">Contact</a></div>
+
+<nav class="chap-nav" id="chapNav" aria-label="Chapters on this page"></nav>
+<main id="top">
+
+  <!-- FILM 1 · the temple doorway: corridor → mandapam steps -->
+  <section class="film hero-portal" id="filmHero" style="--len:640;--shade:linear-gradient(90deg,rgba(17,11,7,.82),rgba(17,11,7,.3) 50%,rgba(17,11,7,.05))" data-clips="corridor,steps" data-focal="0.5" aria-label="Introduction">
+    <div class="stage">
+      <div class="portal-bg" aria-hidden="true"></div>
+      <div class="reel" id="heroReel">
+        <img class="poster" src="img/poster-corridor.webp" alt="">
+        <canvas aria-hidden="true"></canvas>
+      </div>
+      <div class="smoke" aria-hidden="true"></div>
+      <svg class="portal-line" id="portalLine" viewBox="0 0 62 100" preserveAspectRatio="none" aria-hidden="true">
+        <path pathLength="1" d="M0 100V31A31 31 0 0 1 62 31V100"/>
+        <path class="o" pathLength="1" d="M-3.5 100V31A34.5 34.5 0 0 1 65.5 31V100"/>
+        <path pathLength="1" d="M31 -9.5c2.2 2.6 2.6 5.2 0 8.4c-2.6-3.2-2.2-5.8 0-8.4zM26.5 -3.5c1.8 0.2 3.4 1.2 4.5 2.6M35.5 -3.5c-1.8 0.2-3.4 1.2-4.5 2.6"/>
+        <path class="o" pathLength="1" d="M-8 100h78"/>
+      </svg>
+      <div class="flank l" id="flankL">
+        <span class="eyebrow">South Indian Heritage</span>
+        <span class="big"><span>Enter</span></span>
+        <span class="big"><span>the</span></span>
+      </div>
+      <div class="flank r" id="flankR">
+        <span class="big"><span>Temple</span></span>
+        <span class="big"><span><em>of Silk</em></span></span>
+        <span class="note"><i></i>Scroll to step inside</span>
+      </div>
+      <div class="side l" id="sideL" aria-hidden="true">Kanchipuram · 12.83° N · 79.70° E</div>
+      <div class="side r" id="sideR" aria-hidden="true">Weaving since 1962 · Pure zari</div>
+      <div class="bars" aria-hidden="true"><i id="barT"></i><i id="barB"></i></div>
+      <div class="cap center low corr" data-in="0.25" data-out="0.4">
+        <span class="eyebrow">The corridor</span>
+        <p>Every saree begins here: past the lamps, toward the looms.</p>
+      </div>
+      <div class="cap hero-final" data-in="0.5" data-out="1.1">
+        <span class="eyebrow">Tradition in every thread</span>
+        <h1 id="heroTitle">Timeless Sarees,<br><em>Eternal</em> Grace</h1>
+        <i class="rule" id="heroRule"></i>
+        <p>Rooted in tradition, woven for today. Discover sarees that celebrate your story, your style, your heritage.</p>
+        <div class="ctas"><a href="sarees.html" class="btn">Explore Collection</a><a href="muhurtham.html" class="link-arrow">The Muhurtham Edit <svg><use href="#arrow"/></svg></a></div>
+        <div class="facts3"><span>24 days on the loom</span><span>Pure zari</span><span>Silk Mark certified</span></div>
+      </div>
+      <button class="hotspot" id="hotspot" data-open="deepa-thoranam" style="left:57%;top:62%" aria-label="View the saree in this film: Deepa Thoranam">
+        <span class="dotp"></span>
+        <span class="tag"><small>Worn in this film</small><b>Deepa Thoranam</b><span>₹44,000 · View saree</span></span>
+      </button>
+      <div class="chapters" aria-hidden="true"><span data-a="0" data-b="0.2"><i></i>The doorway</span><span data-a="0.2" data-b="0.42"><i></i>The corridor</span><span data-a="0.42" data-b="1"><i></i>The mandapam</span></div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true" data-tr="smoke"><div class="track" id="marq"></div></div>
+
+  <!-- HERITAGE -->
+  <section class="heritage" id="story" aria-labelledby="herTitle">
+    <div class="her">
+      <div class="her-photo reveal">
+        <img class="w" id="weaverImg" src="img/weaver.webp" alt="A weaver's hands at a wooden pit loom, weaving a red silk saree with gold zari" loading="lazy">
+        <img src="img/pillar.webp" alt="" aria-hidden="true" loading="lazy" style="object-position:50% 70%">
+      </div>
+      <div class="her-text">
+        <span class="eyebrow reveal">Our Heritage</span>
+        <h2 id="herTitle" class="reveal">More Than<br>Just a Saree</h2>
+        <p class="reveal">We are a celebration of South Indian culture, weaving tradition, craftsmanship and elegance into every saree. Each piece carries the legacy of skilled artisans and the timeless beauty of our heritage.</p>
+        <div class="facts reveal">
+          <div><b>24</b>days on the loom for a bridal saree</div>
+          <div><b>2</b>weavers at every pit loom</div>
+          <div><b>3-ply</b>mulberry silk in every body</div>
+        </div>
+        <div class="reveal" style="display:flex;gap:28px;flex-wrap:wrap"><a href="story.html" class="link-arrow" style="color:var(--p-ink)">Our Story <svg><use href="#arrow"/></svg></a><a href="#zari" class="link-arrow" style="color:var(--p-ink)">See how it's woven <svg><use href="#arrow"/></svg></a></div>
+      </div>
+      <div class="her-arch reveal">
+        <div class="arch">
+          <svg viewBox="0 0 250 380" fill="none" stroke="#a9823f" stroke-width="1">
+            <path d="M12 380V140C12 62 60 22 125 22s113 40 113 118v240"/>
+            <path d="M2 380V140C2 54 56 10 125 10s123 44 123 130v240" opacity=".45"/>
+            <path d="M125 0c6 6 7 12 0 20c-7-8-6-14 0-20z"/>
+            <g transform="translate(4 230)"><path d="M0 0c-6-8-6-18 0-26c6 8 6 18 0 26z"/><path d="M0 0c-10-2-16-8-18-16c10 0 16 6 18 16z"/></g>
+            <g transform="translate(246 230) scale(-1 1)"><path d="M0 0c-6-8-6-18 0-26c6 8 6 18 0 26z"/><path d="M0 0c-10-2-16-8-18-16c10 0 16 6 18 16z"/></g>
+          </svg>
+          <div class="pic"><img id="gopuramImg" src="img/gopuram.webp" alt="A carved South Indian temple gopuram at dusk with birds in flight" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILM 2 · pallu -->
+  <section class="film" id="filmPallu" data-tr="sweep" style="--len:240;--shade:linear-gradient(90deg,rgba(17,11,7,.15),rgba(17,11,7,.05) 40%,rgba(17,11,7,.85) 80%)" data-clips="pallu" data-focal="0.55" aria-label="The pallu">
+    <div class="stage">
+      <img class="poster" src="img/poster-pallu.webp" alt="" loading="lazy">
+      <canvas aria-hidden="true"></canvas>
+      <div class="cap right" data-in="0.06" data-out="0.46">
+        <span class="eyebrow">The pallu</span>
+        <h2>Six yards.<br>One unbroken <em>story</em>.</h2>
+      </div>
+      <div class="cap right" data-in="0.58" data-out="1.1">
+        <p>The pallu is where a weaver signs her work: peacocks, temple spires and mango buttas, woven in pure zari to catch the lamplight as it falls.</p>
+        <a href="#sarees" class="link-arrow">Find your weave <svg><use href="#arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIONS -->
+  <section class="collections" id="sarees" data-tr="smoke" aria-labelledby="colTitle">
+    <div class="lamp" aria-hidden="true"><img src="img/deepam-leaf.webp" alt="" loading="lazy"></div>
+    <div class="wrap sec">
+      <div class="head">
+        <div class="t"><span class="eyebrow reveal">Our Collections</span><h2 id="colTitle" class="reveal">Find Your Perfect Weave</h2></div>
+        <a href="sarees.html" class="link-arrow reveal">View All <svg><use href="#arrow"/></svg></a>
+      </div>
+      <div class="cards" id="cards"></div>
+      <a class="studio-teaser reveal" href="sarees.html#studio" data-cursor="Design">
+        <span class="dots" aria-hidden="true"><i style="background:#8a1a1d"></i><i style="background:#0e5a52"></i><i style="background:#d79a16"></i><i style="background:#c0175a"></i></span>
+        <span><span class="eyebrow">The Loom Studio</span><h3>Or design your own Kanchipuram</h3><p>Pick the body, the korvai border, the zari and the butta, and watch it woven as you choose.</p></span>
+        <span class="btn">Open the studio</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FILM 3 · zari -->
+  <section class="film" id="zari" data-tr="sweep" style="--len:320" data-clips="zari" data-focal="0.6" aria-label="How zari is woven">
+    <div class="stage">
+      <img class="poster" src="img/poster-zari.webp" alt="" loading="lazy">
+      <canvas aria-hidden="true"></canvas>
+      <div class="cap" data-in="0" data-out="0.28">
+        <span class="num">I</span>
+        <h2>The thread<br>of <em>gold</em></h2>
+        <p>Zari is fine silver wire twisted around silk and dipped in gold. Pure zari stays soft for decades and never turns black.</p>
+      </div>
+      <div class="cap" data-in="0.38" data-out="0.6">
+        <span class="num">II</span>
+        <h2>Passed through<br>by <em>hand</em></h2>
+        <p>The shuttle crosses the warp thousands of times. Two weavers work in rhythm, one on the body, one on the border.</p>
+      </div>
+      <div class="cap" data-in="0.7" data-out="1.1">
+        <span class="num">III</span>
+        <h2>A border<br>is <em>born</em></h2>
+        <p>Pass by pass, the motif rises out of the red silk. A bridal border can take a full week of the loom's time on its own.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANATOMY -->
+  <section class="anatomy" id="anatomy" aria-labelledby="anaTitle">
+    <div class="wrap sec">
+      <div class="ana">
+        <figure class="ana-fig reveal">
+          <div class="inner" id="anaInner"><img src="img/anatomy.webp" alt="An emerald Kanchipuram silk saree laid on dark wood, showing its gold zari border, temple-spire edge and round butta motifs" loading="lazy"></div>
+          <figcaption><span>Study · Emerald Kanchipuram silk</span><span>Tap a point to look closer</span></figcaption>
+        </figure>
+        <div>
+          <span class="eyebrow reveal">Read the Weave</span>
+          <h2 id="anaTitle" class="reveal" style="margin-top:16px">The Anatomy of a Silk Saree</h2>
+          <div class="terms" id="terms"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILM 4 · bride -->
+  <section class="film" id="muhurtham" data-tr="smoke" style="--len:320;--shade:linear-gradient(90deg,rgba(17,11,7,.15),rgba(17,11,7,.1) 45%,rgba(17,11,7,.82))" data-clips="bride" data-focal="0.38" aria-label="The Muhurtham Edit">
+    <div class="stage">
+      <img class="poster" src="img/poster-bride.webp" alt="" loading="lazy">
+      <canvas aria-hidden="true"></canvas>
+      <div class="cap right" data-in="0.04" data-out="0.44">
+        <span class="eyebrow">The Muhurtham Edit</span>
+        <h2>For the moment<br>that lasts a <em>lifetime</em></h2>
+      </div>
+      <div class="cap right" data-in="0.56" data-out="1.1">
+        <p>The muhurtham saree is the one she will keep. Woven in arakku red and temple gold, heavy enough to hold its drape through a long ceremony, and made to be handed down.</p>
+        <a href="#looks" class="link-arrow">See the bridal looks <svg><use href="#arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MUHURTHAM CONTENT -->
+  <section class="muhurtham" aria-labelledby="mTitle">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="wrap sec" id="looks">
+      <div class="m-intro">
+        <div style="display:grid;gap:18px"><span class="eyebrow reveal">Bridal Trousseau</span><h2 id="mTitle" class="reveal">Three sarees,<br>three <em>ceremonies</em></h2></div>
+        <p class="reveal">A South Indian wedding unfolds over days. We weave the trousseau as one set, so the colours speak to each other from the engagement to the reception, and every border is drawn for the bride who wears it.</p>
+      </div>
+      <div class="looks">
+        <article class="look reveal">
+          <div class="ph" data-cursor="View"><img src="img/pink-2.webp" alt="Bride-to-be in a rani pink Kanchipuram silk saree with gold border" loading="lazy"></div>
+          <div class="step"><b>1</b><div><span class="when">The evening before</span><h3>Nichayathartham</h3></div></div>
+          <p>The engagement. Rani pink silk with a slim gold border, light enough for an evening of greeting family.</p>
+        </article>
+        <article class="look reveal">
+          <div class="ph" data-cursor="View"><img src="img/bride-hands.webp" alt="Bride's hands with mehendi and gold bangles holding the zari border of a red and gold wedding saree" loading="lazy"></div>
+          <div class="step"><b>2</b><div><span class="when">The auspicious hour</span><h3>Muhurtham</h3></div></div>
+          <p>The ceremony. Arakku red and gold, a temple-spire border and a fully woven pallu. The saree she ties the thaali in.</p>
+        </article>
+        <article class="look reveal">
+          <div class="ph" data-cursor="View"><img src="img/emerald-1.webp" alt="Bride in an emerald green Kanchipuram silk saree with heavy zari" loading="lazy"></div>
+          <div class="step"><b>3</b><div><span class="when">That night</span><h3>Reception</h3></div></div>
+          <p>The celebration. Emerald tissue silk that glows under lights, with zari running through the whole drape.</p>
+        </article>
+      </div>
+
+      <div class="m-cta reveal">
+        <div><span class="eyebrow">Bridal Planner</span><h3>Plan your trousseau from your muhurtham date</h3><p>See when to choose colours, when weaving begins and when your sarees will be ready, then book a consultation.</p></div>
+        <a href="muhurtham.html#planner" class="btn">Open the planner</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILM 5 · unfolding -->
+  <section class="film" id="filmUnfold" data-tr="sweep" style="--len:240;--shade:linear-gradient(0deg,rgba(17,11,7,.6),rgba(17,11,7,.05) 60%)" data-clips="unfold" data-focal="0.5" aria-label="Unfold the season">
+    <div class="stage">
+      <img class="poster" src="img/poster-unfold.webp" alt="" loading="lazy">
+      <canvas aria-hidden="true"></canvas>
+      <div class="cap center low" data-in="0.1" data-out="1.1">
+        <span class="eyebrow">New this season</span>
+        <h2>Unfold the <em>season</em></h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section class="shop" id="shop" aria-labelledby="shopTitle">
+    <div class="wrap sec">
+      <div class="head">
+        <div class="t"><span class="eyebrow reveal">Signature Pieces</span><h2 id="shopTitle" class="reveal">Woven This Season</h2></div>
+        <div class="filters reveal" id="filters" role="tablist" aria-label="Filter by weave"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+      <div style="display:flex;justify-content:center;margin-top:70px"><a href="sarees.html" class="btn ghost">See all 12 sarees</a></div>
+    </div>
+  </section>
+
+  <!-- FILM 6 · deepam -->
+  <section class="film" id="filmDeepam" data-tr="smoke" style="--len:280" data-clips="deepam" data-focal="0.5" aria-label="From our looms to your wardrobe">
+    <div class="stage">
+      <img class="poster" src="img/poster-deepam.webp" alt="" loading="lazy">
+      <canvas aria-hidden="true"></canvas>
+      <div class="smoke" aria-hidden="true"></div>
+      <div class="cap" data-in="0.06" data-out="1.1">
+        <span class="eyebrow">Crafted with care</span>
+        <h2>From Our Looms<br>To Your <em>Wardrobe</em></h2>
+        <p>Every saree is a blend of heritage, artistry and a promise of quality. Each one leaves the loom with its weaver's name and a Silk Mark tag.</p>
+        <div class="ctas"><a href="#shop" class="btn">Shop Now</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNAL -->
+  <section class="journal" id="journal" data-tr="smoke" aria-labelledby="jTitle">
+    <div class="wrap sec">
+      <div class="head"><div class="t"><span class="eyebrow reveal">Journal</span><h2 id="jTitle" class="reveal">Stories from the Loom</h2></div><a href="journal.html" class="link-arrow reveal">All stories <svg><use href="#arrow"/></svg></a></div>
+      <div class="posts">
+        <a href="journal.html#korvai" class="post reveal" data-cursor="Read"><div class="ph"><img src="img/zari-threads.webp" alt="Red silk and gold zari threads stretched across a wooden loom" loading="lazy"></div><span class="meta">Craft · 6 min read</span><h3>How korvai joins a border to its body</h3><p>Three shuttles, two weavers and one interlocked seam that never comes apart.</p></a>
+        <a href="journal.html#storing-silk" class="post reveal" data-cursor="Read"><div class="ph"><img src="img/muslin.webp" alt="A folded red silk saree wrapped in white muslin with camphor beside it" loading="lazy"></div><span class="meta">Care · 4 min read</span><h3>Storing silk between festivals</h3><p>Muslin wraps, camphor kept at a distance, and refolding every season so the zari never cracks.</p></a>
+        <a href="journal.html#muhurtham-saree" class="post reveal" data-cursor="Read"><div class="ph"><img src="img/corridor-red.webp" alt="A woman in a maroon silk saree walking through a lamp-lit temple corridor" loading="lazy" style="object-position:50% 40%"></div><span class="meta">Weddings · 5 min read</span><h3>Choosing a muhurtham saree</h3><p>Colour, weight and border width for a long ceremony in a warm mandapam.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="visit" id="visit" aria-labelledby="vTitle">
+    <div class="bg"><img src="img/urli.webp" alt="A brass urli filled with jasmine and rose petals on a temple floor, lamps glowing behind" loading="lazy"></div>
+    <div class="wrap">
+      <div class="copy">
+        <span class="eyebrow reveal">Visit the store</span>
+        <h2 id="vTitle" class="reveal">Drape it before<br>you <em>decide</em></h2>
+        <p class="reveal" style="color:var(--ivory-dim)">Sit with a stylist, see the zari under lamplight and try every drape. Bridal appointments come with filter coffee and as much time as you need.</p>
+        <dl class="reveal">
+          <dt>Address</dt><dd>14 Gandhi Road, Kanchipuram 631501</dd>
+          <dt>Hours</dt><dd>10 am to 8 pm, every day</dd>
+          <dt>Phone</dt><dd><span id="phoneTxt">+91 44 2722 0000</span><button class="copybtn" data-copy="#phoneTxt" type="button">Copy</button></dd>
+        </dl>
+        <div class="reveal" style="display:flex;gap:26px;flex-wrap:wrap;margin-top:8px"><a href="contact.html#book" class="btn">Book a visit</a><a href="contact.html" class="link-arrow">Contact <svg><use href="#arrow"/></svg></a></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<section class="letter" aria-labelledby="lTitle">
+  <div class="wrap">
+    <div><h2 id="lTitle">Letters from Kanchipuram</h2><p>New weaves, festival edits and loom visits, once a month.</p></div>
+    <div>
+      <form id="letterForm" novalidate>
+        <label for="email" style="position:absolute;left:-9999px">Email address</label>
+        <input id="email" type="email" placeholder="Your email address" autocomplete="email">
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="note" id="letterNote" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <a href="index.html" aria-label="SVARA home"><img class="flogo" src="img/logo.png" alt="SVARA South Indian Heritage" loading="lazy"></a>
+      <ul><li><a href="index.html">Home</a></li><li><a href="sarees.html">Sarees</a></li><li><a href="muhurtham.html">Muhurtham</a></li><li><a href="story.html">Our Story</a></li><li><a href="journal.html">Journal</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <div class="social">
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        <a href="https://pinterest.com" target="_blank" rel="noopener" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M11 8.5c3-1 5.5.6 5 3.3-.4 2.2-2.6 3.2-4 2.2M11.6 10l-2.4 10"/></svg></a>
+        <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+    <div class="wordmark" aria-hidden="true"><span id="wordmark">SVARA</span></div>
+    <div class="bottom"><span>© 2026 SVARA · South Indian Heritage · 14 Gandhi Road, Kanchipuram</span><span>Concept website · sample products and prices · not a real store</span></div>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="qTitle">
+  <div class="sheet">
+    <div class="gal"><img id="qImg" src="" alt=""><div class="thumbs" id="qThumbs"></div></div>
+    <div class="body">
+      <button class="x" id="qClose" aria-label="Close">×</button>
+      <span class="eyebrow" id="qTag"></span>
+      <h3 id="qTitle"></h3>
+      <div class="price" id="qPrice"></div>
+      <p id="qDesc"></p>
+      <dl id="qSpec"></dl>
+      <button class="btn" id="qAdd">Add to Bag</button>
+    </div>
+  </div>
+</div>
+<div class="scrim" id="scrim"></div>
+<aside class="bag" id="bag" aria-label="Your bag" aria-hidden="true">
+  <div class="bh"><h3>Your Bag</h3><button class="eyebrow" id="bagClose">Close</button></div>
+  <div class="bprog" id="bagProg"><span id="bagProgTxt"></span><i><b id="bagProgBar"></b></i></div>
+  <div class="items" id="bagItems"></div>
+  <div class="bf"><div class="tot"><span class="eyebrow">Subtotal</span><b id="bagTotal">₹0</b></div><small>Free shipping across India. Each saree ships with its Silk Mark tag.</small><button class="btn" id="checkout">Checkout</button></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+<script src="assets/data.js"></script>
+<script src="assets/manifest.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/home.js"></script>
+</body>
+</html>

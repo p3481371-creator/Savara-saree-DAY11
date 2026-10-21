@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact · SVARA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Visit the SVARA store and looms in Kanchipuram, book an appointment or write to us.">
+<script>try{if(sessionStorage.getItem("svara-pt"))document.documentElement.classList.add("pt-in")}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<script>document.body.dataset.page="contact"</script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="arrow" viewBox="0 0 26 10"><path d="M0 5h24M20 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
+</defs></svg>
+<div class="grain" id="grain" aria-hidden="true"></div>
+<div class="thread" aria-hidden="true"><i id="threadFill"></i></div>
+<canvas class="fx" id="sweep" aria-hidden="true"></canvas>
+<div class="fx" id="smokefx" aria-hidden="true"><i class="veil"></i><i class="s1"></i><i class="s2"></i></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel">View</span></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="SVARA home"><img src="img/lotus-sm.png" alt=""><b>SVARA</b></a>
+    <nav aria-label="Primary"><ul><li><a href="index.html">Home</a></li><li><a href="sarees.html">Sarees</a></li><li><a href="muhurtham.html">Muhurtham</a></li><li><a href="story.html">Our Story</a></li><li><a href="journal.html">Journal</a></li><li><a href="contact.html" class="on" aria-current="page">Contact</a></li></ul></nav>
+    <div class="tools">
+      <button aria-label="Search sarees" id="searchBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button>
+      <button aria-label="Open bag" id="bagBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span class="bagcount" id="bagCount">0</span></button>
+      <button aria-label="Open menu" class="menu-btn" id="menuBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true"><button class="close" id="closeDrawer">Close</button><a href="index.html">Home</a><a href="sarees.html">Sarees</a><a href="muhurtham.html">Muhurtham</a><a href="story.html">Our Story</a><a href="journal.html">Journal</a><a href="contact.html">Contact</a></div>
+
+<main id="top">
+  <section class="film" id="filmHero" style="--len:240" data-clips="deepam" data-focal="0.5" aria-label="Contact">
+    <div class="stage">
+      <img class="poster" src="img/poster-deepam.webp" alt="">
+      <canvas aria-hidden="true"></canvas>
+      <div class="smoke" aria-hidden="true"></div>
+      <div class="cap" data-in="0" data-out="0.45">
+        <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">SVARA</a><i></i><span>Contact</span></nav>
+        <h1>Come <em>in</em></h1>
+        <p>Visit the store above our looms in Kanchipuram, book a bridal appointment, or write to us. The lamp is always lit.</p>
+      </div>
+      <div class="cap" data-in="0.55" data-out="1.1">
+        <span class="eyebrow">Open every day</span>
+        <h2>Filter coffee,<br>lamplight and <em>silk</em></h2>
+        <div class="ctas"><a href="#book" class="btn">Book an appointment</a><a href="#write" class="link-arrow">Write to us <svg><use href="#arrow"/></svg></a></div>
+      </div>
+      <div class="cue" aria-hidden="true"><i></i>Scroll</div>
+    </div>
+  </section>
+
+  <section class="journal" id="visit" data-tr="smoke" aria-labelledby="vTitle">
+    <div class="wrap sec">
+      <div class="cgrid">
+        <div class="store reveal">
+          <div class="ph"><img src="img/urli-2.webp" alt="A brass urli of jasmine and rose petals at the store entrance" loading="lazy"></div>
+          <div class="in">
+            <span class="eyebrow">The store and looms</span>
+            <h3 id="vTitle">SVARA, Kanchipuram</h3>
+            <dl>
+              <dt>Address</dt><dd>14 Gandhi Road, Kanchipuram 631501, Tamil Nadu</dd>
+              <dt>Phone</dt><dd><span id="phoneTxt">+91 44 2722 0000</span><button class="copybtn" data-copy="#phoneTxt" type="button">Copy</button></dd>
+              <dt>Email</dt><dd><span id="mailTxt">hello@svara.example</span><button class="copybtn" data-copy="#mailTxt" type="button">Copy</button></dd>
+              <dt>Getting here</dt><dd>75 km from Chennai. 10 minutes' walk from the Ekambareswarar temple.</dd>
+            </dl>
+            <table class="hours" aria-label="Opening hours"><tbody id="hours"></tbody></table>
+            <a class="link-arrow" href="https://www.google.com/maps/search/Gandhi+Road+Kanchipuram" target="_blank" rel="noopener" style="justify-self:start">Open in Maps <svg><use href="#arrow"/></svg></a>
+          </div>
+        </div>
+        <div id="write" style="scroll-margin-top:100px">
+          <span class="eyebrow reveal">Write to us</span>
+          <h2 class="reveal" style="margin:16px 0 34px">We reply within a day</h2>
+          <form class="cform reveal" id="msgForm" novalidate>
+            <div class="row2">
+              <div class="field"><label for="mName">Your name</label><input id="mName" type="text" autocomplete="name"></div>
+              <div class="field"><label for="mContact">Email or phone</label><input id="mContact" type="text" autocomplete="email"></div>
+            </div>
+            <div class="field"><label for="mTopic">About</label><select id="mTopic"><option>A saree I saw on the site</option><option>A bridal order</option><option>Custom weaving</option><option>An order I've placed</option><option>Visiting the looms</option><option>Something else</option></select></div>
+            <div class="field"><label for="mMsg">Message</label><textarea id="mMsg" placeholder="Tell us what you have in mind"></textarea></div>
+            <div><button class="btn" type="submit">Send message</button></div>
+            <p class="formnote" id="msgNote" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="muhurtham" id="book" data-tr="sweep" aria-labelledby="bTitle">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="wrap sec">
+      <div class="appoint reveal">
+        <div class="ph"><img src="img/corridor-maroon.webp" alt="A woman in a maroon silk saree in a lamp-lit temple corridor" loading="lazy" style="object-position:50% 35%"></div>
+        <div class="body">
+          <span class="eyebrow">Appointments</span>
+          <h2 id="bTitle" style="font-size:clamp(34px,3.6vw,48px)">Book a time with a stylist</h2>
+          <div class="field"><span class="eyebrow" style="font-size:10.5px">Type of visit</span><div class="slots" id="types" role="radiogroup" aria-label="Type of visit"></div></div>
+          <div class="field"><label for="aDate">Date</label><input type="date" id="aDate"></div>
+          <div class="field"><span class="eyebrow" style="font-size:10.5px">Time</span><div class="slots" id="slots" role="radiogroup" aria-label="Time"></div></div>
+          <form id="apptForm" novalidate style="display:grid;gap:22px">
+            <div class="row2">
+              <div class="field"><label for="aName">Name</label><input id="aName" type="text" autocomplete="name"></div>
+              <div class="field"><label for="aPhone">Phone</label><input id="aPhone" type="tel" autocomplete="tel"></div>
+            </div>
+            <div><button class="btn" type="submit">Request this time</button></div>
+            <p class="formnote" id="apptNote" aria-live="polite"></p>
+          </form>
+          <div id="confirm"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="journal" data-tr="smoke" aria-labelledby="fTitle">
+    <div class="wrap sec">
+      <div class="faqgrid">
+        <div><span class="eyebrow reveal">Questions</span><h2 id="fTitle" class="reveal" style="margin-top:16px">Before you ask</h2><p class="reveal" style="color:var(--ivory-dim);margin-top:18px;max-width:34ch">Anything not here, write to us and we'll answer within a day.</p></div>
+        <div class="faq reveal">
+          <details open><summary>Do you ship outside India?</summary><p>Yes, to most countries. Sarees ship insured by courier in their muslin wrap and arrive in 6 to 10 working days. Duties are charged by your country on arrival.</p></details>
+          <details><summary>How do I know the silk and zari are pure?</summary><p>Every silk saree carries a Silk Mark tag from the Silk Mark Organisation of India. The weaver's card inside lists the zari used, and you are welcome to test a thread in the store.</p></details>
+          <details><summary>Can I return a saree?</summary><p>Ready sarees can be returned unworn with their tags within 10 days. Sarees woven to order, including bridal borders drawn for you, cannot be returned.</p></details>
+          <details><summary>How long does a custom saree take?</summary><p>About six weeks for a standard Kanchipuram and twelve weeks for a bridal saree, from colour selection to delivery. Our rush loom can shorten a bridal order to about 18 days of weaving.</p></details>
+          <details><summary>Can I watch my saree being woven?</summary><p>Yes. The looms are below the store and open to visitors from 10 am to 5 pm. Bridal customers receive photographs from the loom each week.</p></details>
+          <details><summary>Do you stitch blouses?</summary><p>Yes, from the saree's own blouse piece, with two fittings. Blouse tailoring is included with every bridal saree.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="letter" aria-labelledby="lTitle">
+  <div class="wrap">
+    <div><h2 id="lTitle">Letters from Kanchipuram</h2><p>New weaves, festival edits and loom visits, once a month.</p></div>
+    <div>
+      <form id="letterForm" novalidate>
+        <label for="email" style="position:absolute;left:-9999px">Email address</label>
+        <input id="email" type="email" placeholder="Your email address" autocomplete="email">
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="note" id="letterNote" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <a href="index.html" aria-label="SVARA home"><img class="flogo" src="img/logo.png" alt="SVARA South Indian Heritage" loading="lazy"></a>
+      <ul><li><a href="index.html">Home</a></li><li><a href="sarees.html">Sarees</a></li><li><a href="muhurtham.html">Muhurtham</a></li><li><a href="story.html">Our Story</a></li><li><a href="journal.html">Journal</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <div class="social">
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        <a href="https://pinterest.com" target="_blank" rel="noopener" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M11 8.5c3-1 5.5.6 5 3.3-.4 2.2-2.6 3.2-4 2.2M11.6 10l-2.4 10"/></svg></a>
+        <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+    <div class="wordmark" aria-hidden="true"><span id="wordmark">SVARA</span></div>
+    <div class="bottom"><span>© 2026 SVARA · South Indian Heritage · 14 Gandhi Road, Kanchipuram</span><span>Concept website · sample products and prices · not a real store</span></div>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="qTitle">
+  <div class="sheet">
+    <div class="gal"><img id="qImg" src="" alt=""><div class="thumbs" id="qThumbs"></div></div>
+    <div class="body">
+      <button class="x" id="qClose" aria-label="Close">×</button>
+      <span class="eyebrow" id="qTag"></span>
+      <h3 id="qTitle"></h3>
+      <div class="price" id="qPrice"></div>
+      <p id="qDesc"></p>
+      <dl id="qSpec"></dl>
+      <button class="btn" id="qAdd">Add to Bag</button>
+    </div>
+  </div>
+</div>
+<div class="scrim" id="scrim"></div>
+<aside class="bag" id="bag" aria-label="Your bag" aria-hidden="true">
+  <div class="bh"><h3>Your Bag</h3><button class="eyebrow" id="bagClose">Close</button></div>
+  <div class="bprog" id="bagProg"><span id="bagProgTxt"></span><i><b id="bagProgBar"></b></i></div>
+  <div class="items" id="bagItems"></div>
+  <div class="bf"><div class="tot"><span class="eyebrow">Subtotal</span><b id="bagTotal">₹0</b></div><small>Free shipping across India. Each saree ships with its Silk Mark tag.</small><button class="btn" id="checkout">Checkout</button></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+<script src="assets/data.js"></script>
+<script src="assets/manifest.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/contact.js"></script>
+</body>
+</html>

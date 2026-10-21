@@ -1,0 +1,1 @@
+window.MANIFEST={"corridor":{"sheets":24,"n":96},"steps":{"sheets":36,"n":144},"pallu":{"sheets":24,"n":96},"zari":{"sheets":24,"n":96},"bride":{"sheets":24,"n":96},"unfold":{"sheets":24,"n":96},"deepam":{"sheets":24,"n":96}};
